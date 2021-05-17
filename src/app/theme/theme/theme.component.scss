@@ -1,0 +1,17 @@
+.main-panel.inactive {
+    width: 100%;
+}
+.container{
+    max-width:100% !important;
+}
+
+.main-panel.inactive::after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.64);
+    position: fixed;
+    z-index: 14;
+    bottom:0;
+    left:0;
+  }

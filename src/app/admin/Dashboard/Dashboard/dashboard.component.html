@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="col-xs-12 col-md-6" *ngFor="let prod of prodList; let i = index">
+        <!-- First product box start here-->
+        <div class="prod-info-main prod-wrap clearfix">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                    <div class="product-image">
+                        <img [src]="prod.image" class="img-responsive rotprod">
+
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-12 col-xs-12">
+                    <div class="product-deatil">
+                        <h5 class="name">
+                            <a href="#">
+                                {{prod.name}}
+                            </a>
+
+
+                        </h5>
+                        <p class="price-container">
+                            <span>${{prod.price}}</span>
+                        </p>
+                        <span class="tag1"></span>
+                    </div>
+                    <!-- <div class="description">
+                        <p>{{prod.description}} </p>
+                    </div> -->
+                    <div class="product-info smart-form">
+                        <div class="row">
+                            <div class="col-md-12" *ngIf="check(prod)==false">
+                                <a href="javascript:void(0);" (click)="_addItemToCart(prod,i)"
+                                    class="btn btn-danger btn-cart"><span>Add to
+                                        cart</span></a>
+
+                            </div>
+                            <div class="col-md-12" *ngIf="check(prod)==true">
+                                <a href="#" class="qty qty-minus" (click)="downCartUpdate(prod.id)">-</a>
+                                <input type="numeric" [value]="getCart(prod.id)" />
+                                <a href="#" class="qty qty-plus" (click)="upCartUpdate(prod.id)">+</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end product -->
+    </div>
+
+
+
+</div>
