@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AppService } from 'src/app/admin/services/app.service';
 import * as AppActions from "src/app/store/actions/app.actions";
 @Component({
   selector: 'app-navbar',
@@ -19,7 +18,7 @@ export class NavbarComponent implements OnInit {
   carts: any[];
   cartPopup:boolean=false
 
-  constructor(private appService: AppService, private store: Store, private modalService: NgbModal) {
+  constructor(private store: Store, private modalService: NgbModal) {
 
   }
 
@@ -117,39 +116,14 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  // toggle sidebar in small devices
-  toggleOffcanvas() {
-    document.querySelector('.sidebar-offcanvas').classList.toggle('active');
-  }
+  
   logout() {
 
 
     localStorage.clear();
   }
 
-  // toggle sidebar
-  toggleSidebar() {
-    let body = document.querySelector('body');
-    if ((!body.classList.contains('sidebar-toggle-display')) && (!body.classList.contains('sidebar-absolute'))) {
-      this.iconOnlyToggled = !this.iconOnlyToggled;
-      if (this.iconOnlyToggled) {
-        body.classList.add('sidebar-icon-only');
-      } else {
-        body.classList.remove('sidebar-icon-only');
-      }
-    } else {
-      this.sidebarToggled = !this.sidebarToggled;
-      if (this.sidebarToggled) {
-        body.classList.add('sidebar-hidden');
-      } else {
-        body.classList.remove('sidebar-hidden');
-      }
-    }
-  }
 
-  // toggle right sidebar
-  // toggleRightSidebar() {
-  //   document.querySelector('#right-sidebar').classList.toggle('open');
-  // }
+
 
 }

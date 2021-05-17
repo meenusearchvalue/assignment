@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { Store } from "@ngrx/store";
-import { AppService } from './../../services/app.service';
 import { LoginService } from './../../services/login.service';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import * as AppActions from "src/app/store/actions/app.actions";
 @Component({
   selector: 'app-dashboard',
@@ -21,9 +18,6 @@ export class DashboardComponent implements OnInit {
   constructor(
 
     private store: Store<any>,
-    private appService: AppService,
-    private builder: FormBuilder,
-    private router: Router,
     private service: LoginService,
   ) { }
 
@@ -81,29 +75,29 @@ export class DashboardComponent implements OnInit {
 
   }
   downCartUpdate(id) {
-    
+
     this.carts.map((cartData, i) => {
-     
+
       if (cartData.id == id) {
-        if(cartData.quantity>1){
-        var quantity = (cartData.quantity - 1)
-        let dataV = {
-          'id': cartData.id,
-          'name': cartData.name,
-          'price': cartData.price,
-          'quantity': quantity,
-          'subtotal': (cartData.price * quantity)
+        if (cartData.quantity > 1) {
+          var quantity = (cartData.quantity - 1)
+          let dataV = {
+            'id': cartData.id,
+            'name': cartData.name,
+            'price': cartData.price,
+            'quantity': quantity,
+            'subtotal': (cartData.price * quantity)
+          }
+
+          this.carts[i] = dataV;
+
+        } else {
+          var elementPos = this.carts.map(function (x) { return x.id; }).indexOf(id);
+          this.carts.splice(elementPos, 1)
+
+
         }
-
-        this.carts[i] = dataV;
-      
-      }else{
-        var elementPos = this.carts.map(function(x) {return x.id; }).indexOf(id);
-        this.carts.splice(elementPos, 1)
-
-       
       }
-    }
     });
 
     this.store.dispatch(new AppActions.CART(this.carts));
